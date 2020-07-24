@@ -21,6 +21,7 @@ public class ResumeService {
     public ResumeForm save(ResumeForm resumeForm) {
         Resume resume = modelMapper.map(resumeForm, Resume.class);
         resume = repository.save(resume);
+        System.out.println(resume);
         return resumeForm;
     }
 
