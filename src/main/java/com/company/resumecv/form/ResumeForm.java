@@ -8,6 +8,7 @@ import java.util.List;
 
 @Data
 public class ResumeForm {
+    private Long id;
     private String name;
     private String surname;
     private String vocation;
