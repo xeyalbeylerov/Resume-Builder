@@ -2,8 +2,9 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume/CV Design</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="builderTestStyles.css">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -14,7 +15,7 @@
 
 <div class="container-fluid">
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <!--            Left side-->
             <div class="col-sm-6">
@@ -22,7 +23,7 @@
                 <!--                Personal field-->
 
                 <form action="#" th:action="@{/builder}" th:object="${resume}" method="post">
-
+                    <br>
                     <div class="row">
                         <div class="col">
                             <input class="form-control" placeholder="Job Title">
@@ -78,6 +79,8 @@
                             </div>
                         </div>
                     </div>
+                    <br>
+
                     <!--                    Edit additional button-->
                     <p>
                         <button class="btn btn-primary" type="button" data-toggle="collapse"
@@ -94,10 +97,6 @@
                                   placeholder="Include 2-3 clear sentences about your overall experience"></textarea>
                     </div>
 
-                    <p>Zamanlamalar</p>
-
-
-                    <p>Zamanlamalar</p>
 
                     <!--                    Education starts here-->
                     <div class="mb-3">
@@ -146,22 +145,26 @@
                         <label for="textarea">Social links</label>
                         <!--Social list-->
                         <div>
-                            <ul id="socialUl">
-                                <li>
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="socialLink">Social link</label>
-                                            <input type="text" th:field="*{socials[0].socialNetworkName}"
-                                                   class="form-control" id="socialLink" placeholder="Here">
+                            <td th:each="social,i : *{socials}">
+                                <ul id="socialUl">
+                                    <li>
+                                        <div class="row">
+                                            <div class="form-group col">
+                                                <label for="socialLink">Social link</label>
+                                                <input type="text"
+                                                       th:field="*{socials[__${i.index}__].socialNetworkName}"
+                                                       class="form-control" id="socialLink" placeholder="Here">
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="socialAddress">Social address</label>
+                                                <input type="text"
+                                                       th:field="*{socials[__${i.index}__].socialNetworkAddress}"
+                                                       class="form-control" id="socialAddress" placeholder="Here">
+                                            </div>
                                         </div>
-                                        <div class="form-group col">
-                                            <label for="socialAddress">Social address</label>
-                                            <input type="text" th:field="*{socials[0].socialNetworkAddress}"
-                                                   class="form-control" id="socialAddress" placeholder="Here">
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                                    </li>
+                                </ul>
+                            </td>
                         </div>
                         <!--social list add button-->
 
@@ -174,23 +177,29 @@
                     <div class="mb-3">
                         <label for="textarea">Skills</label>
                         <!--Skill list-->
-                        <div id="skillUl">
-                            <ul>
-                                <li>
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="skill_name">Skill name</label>
-                                            <input type="text" th:field="*{skills[0].skillName}"
-                                                   class="form-control" id="skill_name" placeholder="Here">
+                        <div>
+                            <td th:each="skill,i : *{skills}">
+                                <ul id="skillUl">
+                                    <li>
+                                        <div class="row">
+                                            <div class="form-group col">
+                                                <label for="skill_name">Skill name</label>
+                                                <input type="text" th:field="*{skills[__${i.index}__].skillName}"
+                                                       class="form-control" id="skill_name" placeholder="Here">
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="skill_power">Skill power</label>
+                                                <input type="range" min="0" max="100" step="10"
+                                                       th:field="*{skills[__${i.index}__].power}"
+                                                       class="form-control-range" id="skill_power">
+                                            </div>
+                                            <!--                                            custom-->
+
+
+                                            <!--                                        custom-->
                                         </div>
-                                        <div class="form-group col">
-                                            <label for="skill_power">Skill power</label>
-                                            <input type="range" th:attr="value=${'skills[0].power'}" value="100"
-                                                   class="form-control-range" id="skill_power">
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                                    </li>
+                                </ul>
                         </div>
                         <!--skill list add button-->
 
@@ -208,8 +217,9 @@
             </div>
 
             <!--            right size-->
-            <div style="background-color:black" class="col-sm6">
-                One of three columns
+            <div id="iframe_template_div"  class="col-sm6">
+                <iframe id="iframe_template"  width="600" height="1000" th:src="@{resumeTemplate/1}"  scrolling="no"  frameborder="0" ></iframe>
+
             </div>
         </div>
     </div>
@@ -252,12 +262,12 @@
                         '                                    <div class="row">' +
                         '                                        <div class="form-group col">' +
                         '                                            <label for="educationBody">Education body</label>' +
-                        '                                            <input type="text" name="educations[' + i + '].educationBody}"' +
+                        '                                            <input type="text" name="educations[' + i + '].educationBody"' +
                         '                                                   class="form-control" id="educationBody" placeholder="Here">' +
                         '                                        </div>' +
                         '                                        <div class="form-group col">' +
                         '                                            <label for="educationDate">Education date</label>' +
-                        '                                            <input type="date" name="educations[' + i + '].educationDate}"' +
+                        '                                            <input type="date" name="educations[' + i + '].educationDate"' +
                         '                                                   class="form-control" id="educationDate" placeholder="Here">' +
                         '                                        </div>' +
                         '                                    </div>' +
@@ -279,12 +289,12 @@
                         '                        <div class="row">' +
                         '                        <div class="form-group col">' +
                         '                        <label for="socialLink">Social link</label>' +
-                        '                    <input type="text" th:field="*{socials[' + social + '].socialNetworkName}"' +
+                        '                    <input type="text" name="socials[' + social + '].socialNetworkName"' +
                         '                class="form-control" id="socialLink" placeholder="Here">' +
                         '                        </div>' +
                         '                        <div class="form-group col">' +
                         '                        <label for="socialAddress">Social address</label>' +
-                        '                    <input type="text" th:field="*{socials[' + social + '].socialNetworkAddress}"' +
+                        '                    <input type="text" name="socials[' + social + '].socialNetworkAddress"' +
                         '                class="form-control" id="socialAddress" placeholder="Here">' +
                         '                        </div>' +
                         '                        </div>' +
@@ -306,12 +316,12 @@
                         '                                    <div class="row">' +
                         '                                        <div class="form-group col">' +
                         '                                            <label for="skill_name">Skill name</label>' +
-                        '                                            <input type="text" th:field="*{skills[' + skill + '].skillName}"' +
+                        '                                            <input type="text" name="skills[' + skill + '].skillName"' +
                         '                                                   class="form-control" id="skill_name" placeholder="Here">' +
                         '                                        </div>' +
                         '                                        <div class="form-group col">' +
                         '                                            <label for="skill_power">Skill power</label>' +
-                        '                                            <input type="range" th:attr="value=${\'skills[' + skill + '].power\'}" value="50" class="form-control-range" id="skill_power">' +
+                        '                                            <input type="range" value="0" min="0" max="100" step="10" name="skills[' + skill + '].power" class="form-control-range" id="skill_power">' +
                         '                                        </div>' +
                         '                                    </div>' +
                         '                                </li>');
