@@ -2,13 +2,16 @@ package com.company.resumecv.form;
 
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
 
 @Data
+@EqualsAndHashCode(of = "{id}")
 public class ResumeForm {
     private Long id;
+    private String resumeTitle;
     private String name;
     private String surname;
     private String vocation;

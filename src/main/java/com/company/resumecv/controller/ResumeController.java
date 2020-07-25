@@ -8,14 +8,7 @@ import com.company.resumecv.service.ResumeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriBuilder;
-
-import javax.websocket.server.PathParam;
-import java.net.URI;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,14 +18,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ResumeController {
     private final ResumeService resumeService;
-    private final Html2Pdf generatePdf;
 
-    @GetMapping("/resume")
-    public String resume(Model model) {
-        List<ResumeForm> resumes = resumeService.getAll();
-        model.addAttribute("resume", resumes.get(0));
-        return "resume";
-    }
+
+
 
 
 
@@ -44,50 +32,20 @@ public class ResumeController {
     }
 
     @GetMapping("/resumeTemplate/{id}")
-    public String findByIdResumeTemplate(@PathVariable("id") Long id, Model model) {
+    public String findByIdResumeTemplate(@PathVariable("id") Long id, Model model) throws InterruptedException {
+        Thread.sleep(2000l);
         ResumeForm resumeForm = resumeService.findById(id);
         model.addAttribute("resume", resumeForm);
         return "resumeTemplate";
     }
 
-    @GetMapping
-    public String index(Model model) {
-        model.addAttribute("user2", "Xeyal");
-        return "index";
-    }
-
-    @GetMapping("/generate/{id}")
-    public String generatePdf(@PathVariable("id") Long id, Model model) {
-        ResumeForm resumeForm = resumeService.findById(id);
-        String inputUrl ="http://localhost:8080/resume/"+id;
-        String outputUrl ="TestPdf_"+id+".pdf";
-        generatePdf.generatePDF(inputUrl);
-
-        model.addAttribute("resume", resumeForm);
-        return "resume";
-    }
-    @GetMapping("/up")
-    public String greetingPage(Model model, @RequestParam(required = false) String name) {
-        name = name == null || name.trim().equals("") ? "Thymeleaf" : name;
-        String message = String.format("Merhaba %s!", name);
-        model.addAttribute("message", message);
-        return "index";
-    }
 
 
-    @GetMapping("/testSpring")
-    public String greetingForm(Model model) {
-        SkillForm skillForm = new SkillForm();
-//        model.addAttribute("skillForm", skillForm);
-        model.addAttribute("skillForm", skillForm);
-        return "testSpring";
-    }
 
-    @PostMapping("/testSpring")
-    public String greetingSubmit(@ModelAttribute SkillForm skillForm) {
-        System.out.println(skillForm);
-        return "testSpring";
-    }
+
+
+
+
 
     //    Blank resume object
     @ModelAttribute("resume")

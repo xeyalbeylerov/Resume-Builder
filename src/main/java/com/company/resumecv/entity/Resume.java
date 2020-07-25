@@ -13,6 +13,7 @@ public class Resume {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String resumeTitle;
     private String name;
     private String surname;
     private String vocation;
