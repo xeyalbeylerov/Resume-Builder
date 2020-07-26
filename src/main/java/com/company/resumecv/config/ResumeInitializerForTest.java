@@ -4,10 +4,20 @@ import com.company.resumecv.form.*;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Configuration
 public class ResumeInitializerForTest {
+    public ResumeForm getEmptyResumeForm() {
+        ResumeForm resumeForm = new ResumeForm();
+        resumeForm.setEducations(Arrays.asList(new EducationForm()));
+        resumeForm.setSkills(Arrays.asList(new SkillForm()));
+        resumeForm.setSocials(Arrays.asList(new SocialForm()));
+        resumeForm.setWorkExperience(Arrays.asList(new WorkExperienceForm()));
+        return resumeForm;
+    }
+
     public ResumeForm resumeBuilder() {
         ResumeForm resume = new ResumeForm();
         resume.setAboutUs("Haqqimdakilar bu qeder2");
