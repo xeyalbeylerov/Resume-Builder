@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Data
-@EqualsAndHashCode(of = "{id}")
+@EqualsAndHashCode(of = "id")
 public class ResumeForm {
     private Long id;
     private String resumeTitle;
