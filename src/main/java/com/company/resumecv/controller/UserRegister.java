@@ -27,13 +27,13 @@ public class UserRegister {
 
 
     //    yeni user alib register edir ve sessiona add edir
-    @PostMapping
+    @PostMapping("/addUser")
     public String userRegister(Model model,
                                @ModelAttribute("user") UserForm userForm,
                                HttpSession session) {
         userForm = userService.save(userForm);
         session.setAttribute("user", userForm);
-        return "main";
+        return "redirect:/main";
     }
 
     //    Blank resume object for register
