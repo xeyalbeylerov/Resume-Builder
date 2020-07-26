@@ -39,7 +39,7 @@
         </form>
 
         <li class="nav-item dropdown form-inline my-2 my-lg-0">
-            <div th:text="${user.name+' '+user.surname}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+            <div th:text="${session.user.name+' '+session.user.surname}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown
             </div>
@@ -61,7 +61,7 @@
            aria-controls="nav-home" aria-selected="true">Resumes</a>
         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
            aria-controls="nav-profile" aria-selected="false">Profile</a>
-        <a class="nav-item nav-link ml-auto mr-1" id="nav-create-resume-tab"   th:href="@{builder}" role="tab"
+        <a class="nav-item nav-link ml-auto mr-1" id="nav-create-resume-tab"   th:href="@{builder/create}" role="tab"
            aria-controls="nav-profile" aria-selected="false">Create Resume</a>
     </div>
 
@@ -74,7 +74,7 @@
 
 <!--card started-->
 <div class="row">
-    <tr th:each="resume: ${user.resumeList}">
+    <tr th:each="resume: ${session.user.resumeList}">
     <div class="col-sm-6">
         <div class="card border-secondary mb-3" style="max-width: 18rem;">
             <div th:text="${resume.resumeTitle}" class="card-header">Resume Title</div>
@@ -82,7 +82,7 @@
                 <h5 class="card-title">Secondary card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                     card's content.</p>
-                <div th:text="${user.id}">Id</div>
+                <div th:text="${session.user.id}">Id</div>
             </div>
         </div>
     </div>
@@ -91,11 +91,11 @@
 <!--card ended-->
 
 
-<div th:text="${user.id}" class="name">Id</div>
-<div th:text="${user.name}" class="name">Name</div>
-<div th:text="${user.surname}" class="name">Surname</div>
-<div th:text="${user.email}" class="name">Email</div>
-<div th:text="${user.password}" class="name">Password</div>
+<!--<div th:text="${user.id}" class="name">Id</div>-->
+<!--<div th:text="${user.name}" class="name">Name</div>-->
+<!--<div th:text="${user.surname}" class="name">Surname</div>-->
+<!--<div th:text="${user.email}" class="name">Email</div>-->
+<!--<div th:text="${user.password}" class="name">Password</div>-->
 
 </body>
 
