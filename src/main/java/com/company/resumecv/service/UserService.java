@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
+    private final ResumeService resumeService;
 
     @Transactional
     public UserForm save(UserForm userForm) {
