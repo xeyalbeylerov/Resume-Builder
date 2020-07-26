@@ -27,7 +27,8 @@
                 <!--test-->
                 <!--                Personal field-->
 
-                <form action="#" th:action="@{/builder}" th:object="${resume}" method="post">
+                <form action="#" th:action="@{/builder/update}" th:object="${resume}" method="post">
+                    <input type="text" th:field="*{id}">
                     <br>
                     <div class="row">
                         <div class="col">
@@ -37,6 +38,7 @@
                             <!--                            <input type="text" class="form-control" placeholder="Last name">-->
                         </div>
                     </div>
+
 
                     <div class="row">
                         <div class="col">
@@ -223,7 +225,7 @@
 
             <!--            right size-->
             <div id="iframe_template_div" class="col-sm6">
-                <iframe id="iframe_template" width="600" height="1000" th:src="@{resumeTemplate/1}" scrolling="no"
+                <iframe id="iframe_template" width="600" height="1000" th:src="@{resume/template/{id}(id=${resume.id})}" scrolling="no"
                         frameborder="0"></iframe>
 
             </div>
