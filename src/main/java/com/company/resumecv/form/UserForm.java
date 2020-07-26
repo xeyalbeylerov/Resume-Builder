@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Data
-@EqualsAndHashCode(of = "{id}")
+@EqualsAndHashCode(of = "id")
 public class UserForm {
     private Long id;
     private String name;

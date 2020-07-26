@@ -2,6 +2,7 @@ package com.company.resumecv.entity;
 
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "resume")
 @Data
+@EqualsAndHashCode(of = "id")
 public class Resume {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
