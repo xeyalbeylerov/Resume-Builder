@@ -39,7 +39,8 @@
         </form>
 
         <li class="nav-item dropdown form-inline my-2 my-lg-0">
-            <div th:text="${session.user.name+' '+session.user.surname}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+            <div th:text="${session.user.name+' '+session.user.surname}" class="nav-link dropdown-toggle" href="#"
+                 id="navbarDropdown"
                  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown
             </div>
@@ -61,7 +62,7 @@
            aria-controls="nav-home" aria-selected="true">Resumes</a>
         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
            aria-controls="nav-profile" aria-selected="false">Profile</a>
-        <a class="nav-item nav-link ml-auto mr-1" id="nav-create-resume-tab"   th:href="@{builder/create}" role="tab"
+        <a class="nav-item nav-link ml-auto mr-1" id="nav-create-resume-tab" th:href="@{builder/create}" role="tab"
            aria-controls="nav-profile" aria-selected="false">Create Resume</a>
     </div>
 
@@ -73,19 +74,30 @@
 <!--nav ended-->
 
 <!--card started-->
-<div class="row">
+<div class="card-group d-flex justify-content-around p-2">
     <tr th:each="resume: ${session.user.resumeList}">
-    <div class="col-sm-6">
-        <div class="card border-secondary mb-3" style="max-width: 18rem;">
-            <div th:text="${resume.resumeTitle}" class="card-header">Resume Title</div>
-            <div class="card-body text-secondary">
-                <h5 class="card-title">Secondary card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+        <div>
+            <div class="card border-secondary m-3" style="max-width: 20rem;">
+                <div th:text="${resume.id}" class="card-header"></div>
+                <div th:field="${resume.resumeTitle}" class="card-header"></div>
+
+                <div class="card-body text-secondary">
+
+                    <p class="card-text" style="text-align: center;">
+                        <iframe class="mini-resume" width="240mm" height="327mm"
+                                th:src="@{resume/template/mini/{id}(id=${resume.id})}" scrolling="no"
+                                frameborder="0"></iframe>
+                    </p>
+
+                </div>
+
+                <div class="btn-group btn-group-toggle m-3" data-toggle="buttons">
+                    <a class="btn btn-secondary" th:href="@{builder/update/{id}(id=${resume.id})}"  href="#">Edit</a>
+                    <a class="btn btn-secondary" th:href="@{builder/delete/{id}(id=${resume.id})}" href="#">Delete</a>
+                </div>
                 <div th:text="${session.user.id}">Id</div>
             </div>
         </div>
-    </div>
     </tr>
 </div>
 <!--card ended-->
