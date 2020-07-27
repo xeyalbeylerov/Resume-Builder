@@ -39,6 +39,13 @@ public class ResumeController {
         return "resumeTemplate";
     }
 
+    @GetMapping("/template/mini/{id}")
+    public String findByIdResumeMiniTemplate(@PathVariable("id") Long id, Model model) throws InterruptedException {
+        ResumeForm resumeForm = resumeService.findById(id);
+        model.addAttribute("resume", resumeForm);
+        return "resumeMiniTemplate";
+    }
+
 
 
 
