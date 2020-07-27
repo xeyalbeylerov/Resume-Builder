@@ -1,6 +1,5 @@
 package com.company.resumecv.api;
 
-import com.company.resumecv.entity.Resume;
 import com.company.resumecv.form.ResumeForm;
 import com.company.resumecv.service.ResumeService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +17,6 @@ public class ResumeApi {
 
     @GetMapping
     public List<ResumeForm> getAllList() {
-        return resumeService.getAll();
+        return resumeService.findAll();
     }
 }
