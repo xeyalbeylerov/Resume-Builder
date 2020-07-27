@@ -5,7 +5,6 @@ import lombok.EqualsAndHashCode;
 
 
 @Data
-@EqualsAndHashCode(of = "id")
 public class WorkExperienceForm {
 
     private String experienceDate;
