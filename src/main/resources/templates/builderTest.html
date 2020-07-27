@@ -24,6 +24,13 @@
 
                 <p th:text="${session.user.id+' '+session.user.name}">id and name</p>
 
+                <form method="POST" enctype="multipart/form-data" action="/builder/upload">
+                    <table>
+                        <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+                        <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+                    </table>
+                </form>
+
                 <!--test-->
                 <!--                Personal field-->
 
@@ -35,7 +42,9 @@
                             <input class="form-control" placeholder="Job Title">
                         </div>
                         <div class="col">
-                            <!--                            <input type="text" class="form-control" placeholder="Last name">-->
+<!--image upload-->
+
+
                         </div>
                     </div>
 
