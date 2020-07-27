@@ -25,6 +25,7 @@ public class Resume {
     private String email;
     private String website;
     private String aboutUs;
+    private String imageName;
     @OneToMany
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<WorkExperience> workExperience;
