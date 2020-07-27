@@ -21,6 +21,7 @@ public class ResumeForm {
     private String email;
     private String website;
     private String aboutUs;
+    private String imageName;
     private List<WorkExperienceForm> workExperience;
     private List<EducationForm> educations;
     private List<SkillForm> skills;
