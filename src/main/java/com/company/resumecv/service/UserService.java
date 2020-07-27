@@ -24,17 +24,38 @@ public class UserService {
         User user = modelMapper.map(userForm, User.class);
         user = userRepository.save(user);
         userForm.setId(user.getId());
-        log.info("User registered "+userForm);
+        log.info("User registered " + userForm);
         return userForm;
     }
 
     @Transactional
     public UserForm update(UserForm userForm) {
-        Assert.notNull(userForm.getId(),"UserForm Id can not be null while update");
+        Assert.notNull(userForm.getId(), "UserForm Id can not be null while update");
         User user = modelMapper.map(userForm, User.class);
         user = userRepository.save(user);
         userForm.setId(user.getId());
-        log.info("User saved "+userForm);
+        log.info("User saved " + userForm);
         return userForm;
     }
+
+    public UserForm findById(Long id) {
+        Assert.notNull(id, "Id can not be null while find by id");
+        User user = userRepository.getOne(id);
+        return modelMapper.map(user, UserForm.class);
+    }
+
+    public Boolean existsByResumeId(Long id) {
+        Assert.notNull(id, "Id can not be null while checking");
+        Boolean isExists = userRepository.existsById(id);
+        return isExists;
+    }
+
+
+//    public UserForm saveResumeWithUser(){
+//
+//
+//    }
+//    public UserForm updateResumeWithUser(){
+//
+//    }
 }
