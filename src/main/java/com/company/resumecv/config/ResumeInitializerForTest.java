@@ -14,14 +14,14 @@ public class ResumeInitializerForTest {
         resumeForm.setEducations(Arrays.asList(new EducationForm()));
         resumeForm.setSkills(Arrays.asList(new SkillForm()));
         resumeForm.setSocials(Arrays.asList(new SocialForm()));
-        resumeForm.setWorkExperience(Arrays.asList(new WorkExperienceForm()));
+        resumeForm.setEmploymentHistory(Arrays.asList(new EmploymentHistoryForm()));
         return resumeForm;
     }
 
     public ResumeForm resumeBuilder() {
         ResumeForm resume = new ResumeForm();
-        resume.setAboutUs("Haqqimdakilar bu qeder2");
-        resume.setWorkExperience(workExperienceBuilder());
+        resume.setAbout("Haqqimdakilar bu qeder2");
+        resume.setEmploymentHistory(workExperienceBuilder());
         resume.setEducations(educationBuilder());
 
         resume.setResumeTitle("Resume for work");
@@ -38,21 +38,21 @@ public class ResumeInitializerForTest {
         return resume;
     }
 
-    private List<WorkExperienceForm> workExperienceBuilder() {
-        List<WorkExperienceForm> workExperiences = new ArrayList<>();
+    private List<EmploymentHistoryForm> workExperienceBuilder() {
+        List<EmploymentHistoryForm> workExperiences = new ArrayList<>();
 
-        WorkExperienceForm experience = new WorkExperienceForm();
+        EmploymentHistoryForm experience = new EmploymentHistoryForm();
         experience.setExperienceDate("2013 - 2015");
         experience.setExperienceHeader("Azercellde");
         experience.setExperienceBody("Azercellde islemisem  rem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, volupta");
 
-        WorkExperienceForm experience2 = new WorkExperienceForm();
+        EmploymentHistoryForm experience2 = new EmploymentHistoryForm();
         experience2.setExperienceDate("2011 - 2015");
         experience2.setExperienceHeader("Narda");
         experience2.setExperienceBody("Narda islemisem  rem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, volupta");
 
 
-        WorkExperienceForm experience3 = new WorkExperienceForm();
+        EmploymentHistoryForm experience3 = new EmploymentHistoryForm();
         experience3.setExperienceDate("2012 - 2015");
         experience3.setExperienceHeader("Bakcellde");
         experience3.setExperienceBody("Bakcellde islemisem  rem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, volupta");
