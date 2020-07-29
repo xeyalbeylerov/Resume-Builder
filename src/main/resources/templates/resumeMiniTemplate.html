@@ -119,7 +119,7 @@
                     <p class="bold">About us</p>
                 </div>
                 <!--            aboutUs burada cekilir-->
-                <p th:text="${resume.aboutUs}"></p>
+                <p th:text="${resume.about}"></p>
             </div>
             <div class="resume_item resume_work">
                 <div class="title">
@@ -128,7 +128,7 @@
                 <ul>
 
                     <!--  Started work experience loop-->
-                    <tr th:each="experience: ${resume.workExperience}">
+                    <tr th:each="experience: ${resume.employmentHistory}">
                         <li>
                             <div th:text="${experience.experienceDate}" class="date">date</div>
 
