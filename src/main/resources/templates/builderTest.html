@@ -22,48 +22,53 @@
             <div class="col-sm-6">
                 <!--test-->
 
-                <p th:text="${session.user.id+' '+session.user.name}">id and name</p>
-
-                <form method="POST" enctype="multipart/form-data" action="/builder/upload">
-                    <table>
-                        <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-                        <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
-                    </table>
-                </form>
 
                 <!--test-->
                 <!--                Personal field-->
 
                 <form action="#" th:action="@{/builder/update}" th:object="${resume}" method="post">
-                    <input type="text" th:field="*{id}">
+                    <p th:text="${session.user.id+' '+session.user.name}">id and name</p>
+                    <input type="hidden" th:field="*{id}">
+                    <input type="hidden" th:field="*{imageName}">
                     <br>
                     <div class="row">
                         <div class="col">
-                            <input class="form-control" placeholder="Job Title">
+                            <input class="form-control" th:field="*{jobTitle}" placeholder="Job Title">
                         </div>
                         <div class="col">
-<!--image upload-->
+                            <!--image upload-->
+                            <img th:src="@{'/images/' + ${resume.imageName}}" alt="Resume image" width="70"
+                                 height="70">
 
+
+                            <!-- Button trigger image upload modal -->
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                    data-target="#photoUploadModal">
+                                Edit photo
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                    data-target="#photoDeleteModal">
+                                Delete photo
+                            </button>
 
                         </div>
                     </div>
-
 
                     <div class="row">
                         <div class="col">
                             <input type="text" th:field="*{name}" class="form-control" placeholder="First name">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Last name">
+                            <input type="text" th:field="*{surname}" class="form-control" placeholder="Last name">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Email">
+                            <input type="text" th:field="*{email}" class="form-control" placeholder="Email">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Phone">
+                            <input type="text" th:field="*{phone}" class="form-control" placeholder="Phone">
                         </div>
                     </div>
 
@@ -72,26 +77,29 @@
                     <div class="collapse" id="collapseExample">
                         <div class="row">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Country">
+                                <input type="text" th:field="*{country}" class="form-control" placeholder="Country">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="City">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Address">
-                            </div>
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Nationality">
+                                <input type="text" th:field="*{city}" class="form-control" placeholder="City">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Place Of Birth">
+                                <input type="text" th:field="*{address}" class="form-control" placeholder="Address">
                             </div>
                             <div class="col">
-                                <input type="date" class="form-control" placeholder="Date Of Birth">
+                                <input type="text" th:field="*{nationality}" class="form-control"
+                                       placeholder="Nationality">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" th:field="*{birthplace}" class="form-control"
+                                       placeholder="Place Of Birth">
+                            </div>
+                            <div class="col">
+                                <input type="date" th:field="*{birthDate}" class="form-control"
+                                       placeholder="Date Of Birth">
                             </div>
                         </div>
                     </div>
@@ -109,7 +117,7 @@
                     <!--                    Professional summary-->
                     <div class="mb-3">
                         <label for="textarea">Professional Summary</label>
-                        <textarea class="form-control" id="textarea"
+                        <textarea th:field="*{about}" class="form-control" id="textarea"
                                   placeholder="Include 2-3 clear sentences about your overall experience"></textarea>
                     </div>
 
@@ -122,7 +130,7 @@
 
                             <td th:each="education,i : *{educations}">
                                 <ul id="educationUL">
-                                    <li>
+                                    <li class="edu_item">
                                         <div class="row">
                                             <div class="form-group col">
                                                 <label for="educationHeader">Education header</label>
@@ -156,6 +164,8 @@
                         </p>
                     </div>
                     <!--                    education ends here-->
+
+
                     <!--                    Social starts here-->
                     <div class="mb-3">
                         <label for="textarea">Social links</label>
@@ -163,7 +173,7 @@
                         <div>
                             <td th:each="social,i : *{socials}">
                                 <ul id="socialUl">
-                                    <li>
+                                    <li class="social_item">
                                         <div class="row">
                                             <div class="form-group col">
                                                 <label for="socialLink">Social link</label>
@@ -189,6 +199,50 @@
                         </p>
                     </div>
                     <!--                    social ends here-->
+
+
+                    <!--                    EmploymentHistory starts here-->
+                    <div class="mb-3">
+                        <label for="textarea">Employment history</label>
+                        <!--EmploymentHistory list-->
+                        <div>
+                            <td th:each="employmentHistory,i : *{employmentHistory}">
+                                <ul id="EmployementHistoryUl">
+                                    <li class="employement_history_item">
+                                        <div class="row">
+                                            <div class="form-group col">
+                                                <label for="experience_header">Job title</label>
+                                                <input type="text" th:field="*{employmentHistory[__${i.index}__].experienceHeader}"
+                                                       class="form-control" id="experience_header" placeholder="Here">
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="experience_body">Employer</label>
+                                                <input type="text" th:field="*{employmentHistory[__${i.index}__].experienceBody}"
+                                                       class="form-control" id="experience_body" placeholder="Here">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col">
+                                                <label for="experience_date">Experience date</label>
+                                                <input type="text" th:field="*{employmentHistory[__${i.index}__].experienceDate}"
+                                                       class="form-control" id="experience_date" placeholder="Here">
+                                            </div>
+                                            <div class="form-group col">
+<!--                                              empty label-->
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                        </div>
+                        <!--Employment History add button-->
+
+                        <p>
+                            <button class="btn btn-primary" type="button" id="addAction_EmploymentHistory">Add more</button>
+                        </p>
+                    </div>
+                    <!--                    EmploymentHistory ends here-->
+
+
                     <!--                    Skills starts here-->
                     <div class="mb-3">
                         <label for="textarea">Skills</label>
@@ -196,7 +250,7 @@
                         <div>
                             <td th:each="skill,i : *{skills}">
                                 <ul id="skillUl">
-                                    <li>
+                                    <li class="skill_item">
                                         <div class="row">
                                             <div class="form-group col">
                                                 <label for="skill_name">Skill name</label>
@@ -224,6 +278,9 @@
                         </p>
                     </div>
                     <!--                    Skills ends here-->
+
+
+
                     <p>
                         <button class="btn btn-primary" type="submit" id="save">Save</button>
                     </p>
@@ -234,7 +291,8 @@
 
             <!--            right size-->
             <div id="iframe_template_div" class="col-sm6">
-                <iframe id="iframe_template" width="600" height="1000" th:src="@{resume/template/{id}(id=${resume.id})}" scrolling="no"
+                <iframe id="iframe_template" width="600" height="1000" th:src="@{resume/template/{id}(id=${resume.id})}"
+                        scrolling="no"
                         frameborder="0"></iframe>
 
             </div>
@@ -243,13 +301,58 @@
 
 </div>
 
+<!-- Photo upload Modal -->
+<div class="modal fade" id="photoUploadModal" tabindex="-1" role="dialog" aria-labelledby="photoUploadModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="photoUploadModallabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" enctype="multipart/form-data" action="/builder/upload">
+                <div class="modal-body">
 
+                    <table>
+                        <tr>
+                            <td>File to upload:</td>
+                            <td><input type="file" name="file"/></td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" value="Upload" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- photo delete modal -->
+
+
+<div class="modal fade" id="photoDeleteModal" tabindex="-1" role="dialog" aria-labelledby="photoDeleteModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Are you sure?</h5>
+            </div>
+            <div class="modal-footer">
+                <form method="POST" th:action="@{/builder/delete/photo/{id}(id=${resume.id})}">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" value="delete" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"-->
-<!--        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"-->
-<!--        crossorigin="anonymous"></script>-->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -258,7 +361,6 @@
         crossorigin="anonymous"></script>
 
 <script type="text/javascript" th:src="@{/js/builderTest.js}"></script>
-
 
 
 </html>
