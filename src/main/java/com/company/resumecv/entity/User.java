@@ -2,16 +2,21 @@ package com.company.resumecv.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "user")
 @Data
 @EqualsAndHashCode(of = "id")
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -19,7 +24,11 @@ public class User {
     private String surname;
     private String email;
     private String password;
-    @OneToMany
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+
+    @OneToMany(
+            orphanRemoval = true,
+            cascade = CascadeType.ALL)
+//    @LazyCollection(LazyCollectionOption.FALSE)
+//    @Fetch(value = FetchMode.SUBSELECT)
     private List<Resume> resumeList;
 }
