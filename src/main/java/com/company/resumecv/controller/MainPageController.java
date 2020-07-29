@@ -26,6 +26,10 @@ public class MainPageController {
     @GetMapping
     public String userRegister(Model model, HttpSession session) {
 //        UserForm userForm=(UserForm) session.getAttribute("user");
+//        if(userForm!=null) {
+//           userForm=userService.findById(userForm.getId());
+//           session.setAttribute("user",userForm);
+//        }
 //        model.addAttribute("user",userForm);
         return "main";
     }

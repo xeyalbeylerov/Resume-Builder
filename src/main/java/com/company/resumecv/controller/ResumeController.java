@@ -1,9 +1,6 @@
 package com.company.resumecv.controller;
 
-import com.company.resumecv.entity.Resume;
-import com.company.resumecv.entity.Skill;
 import com.company.resumecv.form.*;
-import com.company.resumecv.service.Html2Pdf;
 import com.company.resumecv.service.ResumeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -40,7 +37,7 @@ public class ResumeController {
     }
 
     @GetMapping("/template/mini/{id}")
-    public String findByIdResumeMiniTemplate(@PathVariable("id") Long id, Model model) throws InterruptedException {
+    public String findByIdResumeMiniTemplate(@PathVariable("id") Long id, Model model){
         ResumeForm resumeForm = resumeService.findById(id);
         model.addAttribute("resume", resumeForm);
         return "resumeMiniTemplate";

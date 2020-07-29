@@ -1,17 +1,13 @@
 package com.company.resumecv;
 
 import com.company.resumecv.config.ResumeInitializerForTest;
-import com.company.resumecv.entity.*;
-import com.company.resumecv.form.*;
+import com.company.resumecv.form.ResumeForm;
 import com.company.resumecv.service.ResumeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.event.EventListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 @RequiredArgsConstructor
