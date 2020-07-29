@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Service
 @Log4j2
+@Transactional
 public class UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
