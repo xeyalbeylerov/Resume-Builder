@@ -1,13 +1,20 @@
 $(document).ready(
     function () {
-        let i = 0;
+        // let i = 0;
+        let i = document.querySelectorAll('.edu_item').length; //we can add mock class to each movie-row
+        i--;
         console.log("ready! education");
         $("#addAction_education").click(
             function (e) {
                 i++;
                 e.preventDefault();
                 console.log("FUNCTION education");
-                $("#educationUL").append('    <li>\n' +
+                let parent=$("#educationUL");
+                let lastChild=parent.lastChild;
+
+
+               console.log("size "+parent.childElementCount);
+                let html='    <li>\n' +
                     // '<button id="closeButton">close</button>\n' +
                     '                                    <div class="row">' +
                     '                                        <div class="form-group col">' +
@@ -28,7 +35,12 @@ $(document).ready(
                     '                                                   class="form-control" id="educationDate" placeholder="Here">' +
                     '                                        </div>' +
                     '                                    </div>' +
-                    '                                </li>');
+                    '                                </li>';
+                parent.append(html);
+                // parent.insertBefore(html, parent.lastChild);
+
+
+
             });
     }
 );
@@ -36,14 +48,16 @@ $(document).ready(
 
 $(document).ready(
     function () {
-        let social = 0;
+        // let social = 0;
+        let social = document.querySelectorAll('.social_item').length; //we can add mock class to each movie-row
+        social--;
         console.log("ready social!");
         $("#addAction_social").click(
             function (e) {
                 social++;
                 e.preventDefault();
                 console.log("FUNCTION social");
-                $("#socialUl").append('<li>' +
+                $("#socialUl").append('<li class="social_item">>' +
                     '                        <div class="row">' +
                     '                        <div class="form-group col">' +
                     '                        <label for="socialLink">Social link</label>' +
@@ -60,17 +74,60 @@ $(document).ready(
             });
     });
 
+//emplyement history JS
+$(document).ready(
+    function () {
+        let employementHistory = document.querySelectorAll('.employement_history_item').length; //we can add mock class to each movie-row
+        employementHistory--;
+        console.log("ready employementHistory!");
+        $("#addAction_EmploymentHistory").click(
+            function (e) {
+                employementHistory++;
+                e.preventDefault();
+                console.log("FUNCTION employementHistory");
+                $("#EmployementHistoryUl").append(' <li class="employement_history_item">' +
+                    '                                        <div class="row">\n' +
+                    '                                            <div class="form-group col">' +
+                    '                                                <label for="experience_header">Job title</label>' +
+                    '                                                <input type="text" name="employmentHistory[' + employementHistory + '].experienceHeader"' +
+                    '                                                       class="form-control" id="experience_header" placeholder="Here">' +
+                    '                                            </div>\n' +
+                    '                                            <div class="form-group col">\n' +
+                    '                                                <label for="experience_body">Employer</label>\n' +
+                    '                                                <input type="text" name="employmentHistory[' + employementHistory + '].experienceBody"' +
+                    '                                                       class="form-control" id="experience_body" placeholder="Here">' +
+                    '                                            </div>' +
+                    '                                        </div>' +
+                    '                                        <div class="row">' +
+                    '                                            <div class="form-group col">' +
+                    '                                                <label for="experience_date">Experience date</label>' +
+                    '                                                <input type="text" name="employmentHistory[' + employementHistory + '].experienceDate"' +
+                    '                                                       class="form-control" id="experience_date" placeholder="Here">' +
+                    '                                            </div>' +
+                    '                                            <div class="form-group col">' +
+                    '<!--                                              empty label-->\n' +
+                    '                                            </div>' +
+                    '                                        </div>' +
+                    '                                    </li>');
+            });
+    });
+
+
+//
+
 //skill JS
 $(document).ready(
     function () {
-        let skill = 0;
+        // let skill = 0;
+        let skill = document.querySelectorAll('.skill_item').length; //we can add mock class to each movie-row
+        skill--;
         console.log("ready skill!");
         $("#addAction_skill").click(
             function (e) {
                 skill++;
                 e.preventDefault();
                 console.log("FUNCTION skill");
-                $("#skillUl").append('  <li>' +
+                $("#skillUl").append('  <li class="skill_item">' +
                     '                                    <div class="row">' +
                     '                                        <div class="form-group col">' +
                     '                                            <label for="skill_name">Skill name</label>' +
@@ -103,6 +160,7 @@ function showSpinnerWhileIFrameLoads() {
         });
     }
 }
+
 //spinner end
 
 //resumeTemplate refersher start
