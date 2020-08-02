@@ -31,11 +31,12 @@ public class ResumeForm {
     private String website;
     private String about;
     private String imageName;
+    private String resumeFileName;
     private List<EmploymentHistoryForm> employmentHistory;
     private List<EducationForm> educations;
     private List<SkillForm> skills;
     private List<SocialForm> socials;
 
-    private UserForm userForm;
+    private User user;
 
 }
