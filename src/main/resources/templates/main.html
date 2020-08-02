@@ -95,6 +95,7 @@
                     <a class="btn btn-secondary" th:href="@{builder/update/{id}(id=${resume.id})}"  href="#">Edit</a>
                     <a class="btn btn-secondary" th:href="@{builder/delete/{id}(id=${resume.id})}" href="#">Delete</a>
                 </div>
+                <a class="btn btn-secondary" th:href="@{pdf/download/{id}(id=${resume.id})}"  href="#">Download</a>
                 <div th:text="${session.user.id}">Id</div>
             </div>
         </div>
