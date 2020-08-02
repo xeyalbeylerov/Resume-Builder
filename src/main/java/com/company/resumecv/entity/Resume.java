@@ -38,8 +38,9 @@ public class Resume implements Serializable {
     private String website;
     private String about;
     private String imageName;
-//    @ManyToOne
-//    @JoinColumn(name="user_id")
+    private String resumeFileName;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name="user_id",)
 //    private User user;
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
