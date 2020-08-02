@@ -18,8 +18,20 @@ public class ResumeInitializerForTest {
         return resumeForm;
     }
 
+    public UserForm userBuilder() {
+        UserForm userForm = new UserForm();
+        userForm.setName("Khayal");
+        userForm.setSurname("test");
+        List<ResumeForm> resumeForms = new ArrayList<>();
+        resumeForms.add(resumeBuilder());
+        userForm.setResumeList(resumeForms);
+        return userForm;
+    }
+
     public ResumeForm resumeBuilder() {
         ResumeForm resume = new ResumeForm();
+        resume.setImageName("17_51956766.jpeg");
+
         resume.setAbout("Haqqimdakilar bu qeder2");
         resume.setEmploymentHistory(workExperienceBuilder());
         resume.setEducations(educationBuilder());
