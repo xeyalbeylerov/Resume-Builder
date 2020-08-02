@@ -1,5 +1,27 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap");
+/*pdf start*/
+@page {
 
+    @bottom-left {
+        content: element(footer);
+        vertical-align: top;
+        padding-top: 10px;
+    }
+
+    @top-right {
+        content: element(header);
+        vertical-align: bottom;
+        padding-bottom: 10px;
+    }
+
+    margin-top: 3.3cm;
+    margin-left: 2cm;
+    margin-right: 2cm;
+    margin-bottom: 3.3cm;
+
+    size: A4 portrait;
+}
+/*pdf end*/
 * {
     margin: 0;
     padding: 0;
