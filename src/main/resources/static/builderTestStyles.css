@@ -1,0 +1,12 @@
+#iframe_template {
+    /*resume template position fixed screen*/
+
+    /*width: 50em;*/
+    background-color: white;
+    position: fixed;
+}
+
+#iframe_template_div {
+
+    background-color: #585c68;
+}
