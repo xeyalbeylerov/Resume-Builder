@@ -25,9 +25,9 @@ public class User implements Serializable {
     private String email;
     private String password;
 
-    @OneToMany(
-            orphanRemoval = true,
-            cascade = CascadeType.ALL)
+    @OneToMany(orphanRemoval = true,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
 //    @LazyCollection(LazyCollectionOption.FALSE)
 //    @Fetch(value = FetchMode.SUBSELECT)
     private List<Resume> resumeList;
